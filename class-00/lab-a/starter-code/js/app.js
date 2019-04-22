@@ -1,3 +1,4 @@
+/* eslint-disable no-template-curly-in-string */
 'use strict';
 
 const names = ['bag', 'banana', 'bathroom', 'boots', 'breakfast', 'bubblegum', 'chair', 'cthulhu', 'dog-duck', 'dragon', 'pen', 'pet-sweep', 'scissors', 'shark', 'sweep', 'tauntaun', 'unicorn', 'usb', 'water-can', 'wine-glass'];
@@ -19,7 +20,7 @@ let votes = [];
 function Product(name) {
   this.name = name;
   //template literals are not working
-  this.path = '/img/${name}.jpg';
+  this.path = `/img/${name}.jpg`;
   this.votes = 0;
   this.views = 0;
   allProducts.push(this);
@@ -36,7 +37,7 @@ function displayPics(){
       viewed.push(rando);
     }
   }
-  
+
   // TODO: In a sentence or two, explain why the previous line of code threw an error when we changed the variable declaration from `var to `let`.
   // The variable rando has block scope to the while loop within function displayPics().
   console.log(viewed);
@@ -64,7 +65,7 @@ function handleClick(event) {
     if(event.target.id === allProducts[i].name) {
       allProducts[i].votes += 1;
       //these are not working properly
-      console.log('${event.target.id} has ${allProducts[i].votes} votes in ${allProducts[i].views} views');
+      console.log(`${event.target.id} has ${allProducts[i].votes} votes in ${allProducts[i].views} views`);
     }
   }
   localStorage.busmall = JSON.stringify(allProducts);
@@ -75,7 +76,7 @@ function handleClick(event) {
 function showList() {
   for(let i = 0; i < allProducts.length; i++) {
     const liEl = document.createElement('li');
-    liEl.textContent = '{allProducts[i].name} has ${allProducts[i].votes} votes in ${allProducts[i].views} views';
+    liEl.textContent = `${allProducts[i].name} has ${allProducts[i].votes} votes in ${allProducts[i].views} views`;
     list.appendChild(liEl);
   }
 }
